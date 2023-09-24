@@ -1,0 +1,6 @@
+*.toml
+*.streamlit
+.gradle
+.idea
+.venv
+bin

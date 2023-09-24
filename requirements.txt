@@ -1,0 +1,8 @@
+openai
+streamlit
+streamlit_chat
+SpeechRecognition
+gtts
+audio_recorder_streamlit
+Ipython
+wave
