@@ -10,6 +10,8 @@ from IPython.display import Audio
 openai.organization = st.secrets['openai_organization']
 openai.api_key = st.secrets['openai_api_key']
 
+st.set_page_config(page_title="Mock Interview", menu_items={"Report a Bug":"mailto:agchromatic@gmail.com"})
+
 # handle audio
 
 class Config:
@@ -97,19 +99,5 @@ with slot1.container():
             placeholder_response = st.empty()
             st.session_state["assistant_messages"].append(gpt_call(placeholder_response))
             st.session_state["message_history"].append({"role":"assistant", "content": st.session_state["assistant_messages"][-1]})
-# elif prompt:
-#     st.session_state["user_messages"].append(prompt)
-#     st.session_state["message_history"].append({"role": "user", "content":prompt})
-#     prompt = st.session_state["user_messages"][-1]
 
-# for i in range(total_user_messages):
-#     if i != 0:
-#         st.chat_message("user").write(st.session_state["user_messages"][i])
-#     if i < total_user_messages - 1:
-#         st.chat_message("assistant").write(st.session_state["assistant_messages"][i])
-#     elif i == total_user_messages - 1:
-#         placeholder_response = st.empty()
-#         st.session_state["assistant_messages"].append(gpt_call(placeholder_response))
-#         st.session_state["message_history"].append({"role":"assistant", "content": st.session_state["assistant_messages"][-1]})
-
-print(st.session_state['message_history'])
+# print(st.session_state['message_history'])

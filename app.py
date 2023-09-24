@@ -14,6 +14,8 @@ from IPython.display import Audio
 openai.organization = st.secrets['openai_organization']
 openai.api_key = st.secrets['openai_api_key']
 
+st.set_page_config(page_title="Mock Interview")
+
 class Config:
     channels = 2
     sample_width = 2
