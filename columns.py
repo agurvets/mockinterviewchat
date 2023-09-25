@@ -88,17 +88,19 @@ if voiceAnswer:
     st.session_state["user_messages"].append(user_input)
     st.session_state['message_history'].append({"role": "user", "content":user_input})
 
-total_user_messages = len(st.session_state["user_messages"])
+total_assistant_messages = len(st.session_state["assistant_messages"])
+total_user_messages = len(st.session_state['user_messages'])
 
 with slot1.container():
-    st.chat_message("assistant").write(st.session_state["assistant_messages"][0])
-    for i in range(total_user_messages):
-        st.chat_message("user").write(st.session_state["user_messages"][i])
-        if i < total_user_messages - 1:
-            st.chat_message("assistant").write(st.session_state["assistant_messages"][i])
-        elif i == total_user_messages - 1:
-            placeholder_response = st.empty()
-            st.session_state["assistant_messages"].append(gpt_call(placeholder_response))
-            st.session_state["message_history"].append({"role":"assistant", "content": st.session_state["assistant_messages"][-1]})
+    print(total_assistant_messages)
+    print(st.session_state['message_history'])
+    for i in range(total_assistant_messages):
+        st.chat_message("assistant").write(st.session_state["assistant_messages"][i])
+        if total_user_messages > 0:
+            st.chat_message("user").write(st.session_state["user_messages"][i])
+    if total_user_messages > 0:
+        placeholder_response = st.empty()
+        st.session_state["assistant_messages"].append(gpt_call(placeholder_response))
+        st.session_state["message_history"].append({"role":"assistant", "content": st.session_state["assistant_messages"][-1]})
 
 # print(st.session_state['message_history'])
