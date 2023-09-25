@@ -59,7 +59,7 @@ def gpt_call( placeholder_response):
     return assistant_response
 
 #####
-st.title(":orange[ChatGPT System Design Interview]")
+st.title(":orange[GPT System Design Interview]")
 
 # initialize session state
 if "user_messages" not in st.session_state:
@@ -68,7 +68,7 @@ if "assistant_messages" not in st.session_state:
     st.session_state["assistant_messages"] = []
 if "message_history" not in st.session_state:
     st.session_state["message_history"] = [
-        {"role": "system", "content": "You are conducting a system design interview for a software engineer job. Ask me a system design interview question, then wait for my response. Feel free to ask one follow up question for each response I give you or to discuss my answer. Don't give me the right answer, but guide me in a better direction."},
+        {"role": "system", "content": "You are conducting a system design interview for a software engineer job. Ask me a system design interview question, then wait for my response. If my answer isn't strong, ask 1-2 follow up questions to clarify before moving on to the next question. And even if my answer is good ask a follow up question. Don't give me the right answer, but guide me in a better direction."},
         {"role":"user", "content": "Say 'Hi, let's get started' then ask me a system design question."}
     ]
 

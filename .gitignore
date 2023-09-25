@@ -5,4 +5,4 @@
 .venv
 bin
 *.txt
-*.wav
+*audio.wav
