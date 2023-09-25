@@ -33,6 +33,7 @@ def transcribe(file_path):
 
 def answer_call_back(voiceInput):
     save_wav_file("temp/audio.wav", voiceInput)
+    # TODO need to make sure this file is not overwritten before we read it!
     try:
         input = transcribe("temp/audio.wav")
     except:
@@ -63,13 +64,13 @@ st.title(":orange[GPT System Design Interview]")
 
 # initialize session state
 if "user_messages" not in st.session_state:
-    st.session_state["user_messages"] = [{"role":"user", "content": "Say 'Hi, let's get started' then ask me a system design question."}]
+    st.session_state["user_messages"] = []
 if "assistant_messages" not in st.session_state:
-    st.session_state["assistant_messages"] = []
+    st.session_state["assistant_messages"] = ["Hi there! Let me know when you're ready and we'll get started."]
 if "message_history" not in st.session_state:
     st.session_state["message_history"] = [
         {"role": "system", "content": "You are conducting a system design interview for a software engineer job. Ask me a system design interview question, then wait for my response. If my answer isn't strong, ask 1-2 follow up questions to clarify before moving on to the next question. And even if my answer is good ask a follow up question. Don't give me the right answer, but guide me in a better direction."},
-        {"role":"user", "content": "Say 'Hi, let's get started' then ask me a system design question."}
+        {"role":"assistant", "content": "Hi there! Let me know when you're ready and we'll get started."}
     ]
 
 if len(st.session_state["message_history"]) == 1:
@@ -90,9 +91,9 @@ if voiceAnswer:
 total_user_messages = len(st.session_state["user_messages"])
 
 with slot1.container():
+    st.chat_message("assistant").write(st.session_state["assistant_messages"][0])
     for i in range(total_user_messages):
-        if i != 0:
-            st.chat_message("user").write(st.session_state["user_messages"][i])
+        st.chat_message("user").write(st.session_state["user_messages"][i])
         if i < total_user_messages - 1:
             st.chat_message("assistant").write(st.session_state["assistant_messages"][i])
         elif i == total_user_messages - 1:

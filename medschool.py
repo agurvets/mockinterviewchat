@@ -63,14 +63,13 @@ st.title(":orange[Mock Residency Interview]")
 
 # initialize session state
 if "user_messages" not in st.session_state:
-    st.session_state["user_messages"] = [{"role":"user", "content": "Say 'Hi, let's get started' then ask your first question."}]
+    st.session_state["user_messages"] = []
 if "assistant_messages" not in st.session_state:
-    st.session_state["assistant_messages"] = []
+    st.session_state["assistant_messages"] = ["Hi there! Let me know when you're ready and we'll get started."]
 if "message_history" not in st.session_state:
     st.session_state["message_history"] = [
         {"role": "system", "content": "let's do a mock interview for medical residency. you'll ask questions and wait for my responses. if my answer isn't strong, ask follow up questions to clarify before moving on to the next question. After I answer five questions, tell me I did well, wish me luck in my interview and say 'Refresh the page to begin another mock interview'."},
-        {"role":"user", "content": "Say 'Hi, let's get started' then ask your first question."}
-    ]
+        {"role":"assistant", "content": "Hi there! Let me know when you're ready and we'll get started."}    ]
 
 if len(st.session_state["message_history"]) == 1:
     text = "Your message"
@@ -90,9 +89,9 @@ if voiceAnswer:
 total_user_messages = len(st.session_state["user_messages"])
 
 with slot1.container():
+    st.chat_message("assistant").write(st.session_state["assistant_messages"][0])
     for i in range(total_user_messages):
-        if i != 0:
-            st.chat_message("user").write(st.session_state["user_messages"][i])
+        st.chat_message("user").write(st.session_state["user_messages"][i])
         if i < total_user_messages - 1:
             st.chat_message("assistant").write(st.session_state["assistant_messages"][i])
         elif i == total_user_messages - 1:
