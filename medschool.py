@@ -59,7 +59,7 @@ def gpt_call( placeholder_response):
     return assistant_response
 
 #####
-st.title(":orange[Mock Residency Interview]")
+st.title(":orange[GPT Mock Residency Interview]")
 
 # initialize session state
 if "user_messages" not in st.session_state:
