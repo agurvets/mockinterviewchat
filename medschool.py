@@ -43,7 +43,7 @@ def answer_call_back(voiceInput):
 def gpt_call( placeholder_response):
 
     response = openai.ChatCompletion.create(
-        model="gpt-4",
+        model="gpt-3.5-turbo",
         stream=True,
         messages=st.session_state['message_history']
     )
