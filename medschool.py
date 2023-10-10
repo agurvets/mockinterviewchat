@@ -68,7 +68,7 @@ if "assistant_messages" not in st.session_state:
     st.session_state["assistant_messages"] = ["Hi there! Let me know when you're ready and we'll get started."]
 if "message_history" not in st.session_state:
     st.session_state["message_history"] = [
-        {"role": "system", "content": "let's do a mock interview for medical residency. you'll ask questions and wait for my responses. if my answer isn't strong, ask follow up questions to clarify before moving on to the next question. After I answer five questions, tell me I did well, wish me luck in my interview and say 'Refresh the page to begin another mock interview'."},
+        {"role": "system", "content": "let's do a mock interview for medical residency. you'll ask questions and wait for my responses. if my answer isn't strong, ask follow up questions to clarify before moving on to the next question. Before the first question, tell me the interview will consist of 5 questions. After I answer 5 questions, tell me I did well, wish me luck in my interview and say 'Refresh the page to begin another mock interview'."},
         {"role":"assistant", "content": "Hi there! Let me know when you're ready and we'll get started."}    ]
 
 if len(st.session_state["message_history"]) == 1:
