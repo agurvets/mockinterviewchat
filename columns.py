@@ -28,7 +28,11 @@ def save_wav_file(file_path, wav_bytes):
 
 def transcribe(file_path):
     audio_file = open(file_path, 'rb')
-    transcription = openai.Audio.transcribe("whisper-1", audio_file)
+    transcription = openai.audio.transcriptions.create(
+        model='whisper-1', 
+        file=audio_file, 
+        response_format='text' 
+    )
     return transcription['text']
 
 def answer_call_back(voiceInput):
@@ -103,4 +107,4 @@ with slot1.container():
         st.session_state["assistant_messages"].append(gpt_call(placeholder_response))
         st.session_state["message_history"].append({"role":"assistant", "content": st.session_state["assistant_messages"][-1]})
 
-# print(st.session_state['message_history'])
+print(st.session_state['message_history'])
